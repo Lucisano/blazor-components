@@ -69,8 +69,6 @@ namespace BlazorComponents.Components
             }
         }
 
-        public static DateTime MonthTileEndDate { get { return MonthTileStartDate.AddDays(41); } }
-
         #endregion
 
         public void DateTileClick(DateTime date)
@@ -115,7 +113,5 @@ namespace BlazorComponents.Components
             TimeChanged?.Invoke(_dateSelected);
             this.StateHasChanged();
         }
-
-
     }
 }
