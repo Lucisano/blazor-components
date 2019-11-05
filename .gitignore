@@ -1,3 +1,6 @@
 /BlazorComponents/obj
 /BlazorComponents/.vs
 /BlazorComponents/bin
+/BlazorComponentsImplementation/.vs
+/BlazorComponentsImplementation/bin
+/BlazorComponentsImplementation/obj

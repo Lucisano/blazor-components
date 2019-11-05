@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
 
-namespace BlazorComponents.Pages
+namespace BlazorComponentsTestProject.Pages
 {
     public class TestPageBase : ComponentBase
     {

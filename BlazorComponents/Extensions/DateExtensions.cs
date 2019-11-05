@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BlazorComponents.Shared
+namespace BlazorComponents.Extensions
 {
     public static class GenericExtensions
     {

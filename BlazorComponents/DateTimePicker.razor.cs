@@ -1,9 +1,9 @@
-﻿using BlazorComponents.Shared;
+﻿using BlazorComponents.Extensions;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 
-namespace BlazorComponents.Components
+namespace BlazorComponents
 {
     public class DateTimePickerBase : ComponentBase
     {
@@ -13,7 +13,7 @@ namespace BlazorComponents.Components
         public string DateTimeStringFormat { get; set; } = "dd/MM/yyyy";
 
         [Parameter]
-        public bool CloseDateTileWindow { get; set; } = true;
+        public bool CloseDateTileWindow { get; set; }
 
         [Parameter]
         public Action<DateTime> DateChanged { get; set; }
