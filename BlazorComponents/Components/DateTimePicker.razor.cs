@@ -74,7 +74,7 @@ namespace BlazorComponents.Components
         public void DateTileClick(DateTime date)
         {
             _dateSelected = date;
-            Expanded = (CloseTilePickerOnSelection) ? false : true;
+            Expanded = (CloseDateTileWindow) ? false : true;
             DateUpdated();
         }
 
@@ -110,7 +110,7 @@ namespace BlazorComponents.Components
 
         private void DateUpdated()
         {
-            TimeChanged?.Invoke(_dateSelected);
+            DateChanged?.Invoke(_dateSelected);
             this.StateHasChanged();
         }
     }

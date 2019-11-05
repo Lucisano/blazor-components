@@ -1,5 +1,5 @@
-﻿@inherits TestPageBase
+﻿@page "/"
+@inherits TestPageBase
 @using BlazorComponents.Components
-@page "/"
 
-<DateTimePicker/>
+<DateTimePicker DateChanged=@HandleDateChanged/>
