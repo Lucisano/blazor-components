@@ -1,12 +1,81 @@
 ﻿@inherits DateTimePickerBase
+<head>
+    <style>
+        .square {
+            margin: 1px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            cursor: pointer;
+            vertical-align: middle;
+            width: 14%;
+            padding: 1px;
+        }
+
+        .row {
+            vertical-align: middle;
+        }
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+    </style>
+</head>
+
 <p>@Title</p>
 
-<div id="dtp-main-body">
-    <div id="dtp-picker-small">
-
+<div style="width:300px;" id="dtp-main-body">
+    <div class="container" id="dtp-picker-small">
+        <input class="square" id="leftButton" @onclick="@MoveBack" type="button" value="<" />
+        <input class="square" id="dtp-date-input" @onclick="@DateInputClick" @bind=@DateSelected type="text" />
+        <input class="square" id="rightButton" @onclick="@MoveForward" type="button" value=">" />
     </div>
-    <div id="dtp-picker-expanded">
+    @if (Expanded)
+    {
+        <div style="width:100%" id="dtp-picker-expanded">
+            <div class="container">
+                <input class="square" id="leftMonthButton" @onclick="@MoveBackMonth" type="button" value="<" />
+                <p class="square"> @CurrentMonth </p>
+                <input class="square" id="rightMonthButton" @onclick="@MoveForwardMonth" type="button" value=">" />
+            </div>
 
-    </div>
+            <div class="container">
+                @for (int r = 0; r < 6; r++)
+                {
+                    var rowOffset = (r * 7);
+                    <div class="row">
+                        @for (int c = 0; c < 7; c++)
+                        {
+                            var date = TileDates[rowOffset + c];
+
+                            var colour = "#B0C4DE";
+                            if (date.Date == _dateSelected.Date)
+                            {
+                                colour = "#4682B4";
+                            }
+                            else if(date.Month != _dateSelected.Month)
+                            {
+                                colour = "#FFFFFF";
+                            }
+                            <div class="column" @onclick="((Action)(()=>DateTileClick(date)))" style="background-color:@colour;">
+                                <p>@date.Day</p>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    }
 </div>
 
