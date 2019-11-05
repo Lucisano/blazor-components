@@ -17,10 +17,11 @@ namespace BlazorComponents
 
         [Parameter]
         public Action<DateTime> DateChanged { get; set; }
-
+        
         public bool Expanded { get; set; }
 
         private string _title { get; set; }
+        [Parameter]
         public string Title
         {
             get { return _title; }
@@ -31,12 +32,16 @@ namespace BlazorComponents
             }
         }
 
-        public string CurrentMonth { get { return _dateSelected.ToString("MMMM"); } }
+        public string CurrentMonth { get { return _dateValue.ToString("MMMM"); } }
 
-        protected static DateTime _dateSelected { get; set; } = DateTime.Now;
-        public string DateSelected { get { return _dateSelected.ToString(DateTimeStringFormat); } set { _dateSelected = value.ToDate(); this.StateHasChanged(); } }
+        protected DateTime _dateValue { get; set; } = DateTime.Now;
 
-        public static List<DateTime> TileDates
+        [Parameter]
+        public DateTime DateValue { get { return _dateValue; } set { _dateValue = value; this.StateHasChanged(); } }
+
+        public string DateString { get { return _dateValue.ToString(DateTimeStringFormat); } set { _dateValue = value.ToDate(); this.StateHasChanged(); } }
+
+        public List<DateTime> TileDates
         {
             get
             {
@@ -49,11 +54,11 @@ namespace BlazorComponents
             }
         }
 
-        public static DateTime MonthTileStartDate
+        public DateTime MonthTileStartDate
         {
             get
             {
-                var startOfMonth = new DateTime(_dateSelected.Year, _dateSelected.Month, 1);
+                var startOfMonth = new DateTime(_dateValue.Year, _dateValue.Month, 1);
                 if (startOfMonth.DayOfWeek == DayOfWeek.Monday)
                 {
                     return startOfMonth;
@@ -73,7 +78,7 @@ namespace BlazorComponents
 
         public void DateTileClick(DateTime date)
         {
-            _dateSelected = date;
+            _dateValue = date;
             Expanded = (CloseDateTileWindow) ? false : true;
             DateUpdated();
         }
@@ -86,31 +91,31 @@ namespace BlazorComponents
 
         public void MoveBack()
         {
-            _dateSelected = _dateSelected.AddDays(-1);
+            _dateValue = _dateValue.AddDays(-1);
             DateUpdated();
         }
 
         public void MoveForward()
         {
-            _dateSelected = _dateSelected.AddDays(1);
+            _dateValue = _dateValue.AddDays(1);
             DateUpdated();
         }
 
         public void MoveBackMonth()
         {
-            _dateSelected = _dateSelected.AddMonths(-1);
+            _dateValue = _dateValue.AddMonths(-1);
             DateUpdated();
         }
 
         public void MoveForwardMonth()
         {
-            _dateSelected = _dateSelected.AddMonths(1);
+            _dateValue = _dateValue.AddMonths(1);
             DateUpdated();
         }
 
         private void DateUpdated()
         {
-            DateChanged?.Invoke(_dateSelected);
+            DateChanged?.Invoke(_dateValue);
             this.StateHasChanged();
         }
     }
