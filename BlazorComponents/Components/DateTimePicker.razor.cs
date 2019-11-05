@@ -13,10 +13,10 @@ namespace BlazorComponents.Components
         public string DateTimeStringFormat { get; set; } = "dd/MM/yyyy";
 
         [Parameter]
-        public bool CloseTilePickerOnSelection { get; set; } = true;
+        public bool CloseDateTileWindow { get; set; } = true;
 
         [Parameter]
-        public Action<DateTime> TimeChanged { get; set; }
+        public Action<DateTime> DateChanged { get; set; }
 
         public bool Expanded { get; set; }
 
