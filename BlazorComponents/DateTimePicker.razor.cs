@@ -1,10 +1,10 @@
-﻿using TestBlazorApp.Extensions;
+﻿using BlazorComponents.Extensions;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace TestBlazorApp.Components
+namespace BlazorComponents
 {
     public class DateTimePickerBase : ComponentBase
     {

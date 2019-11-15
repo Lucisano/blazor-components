@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace TestBlazorApp.Components
+namespace BlazorComponents
 {
     public class TabPageBase : ComponentBase
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 
-namespace TestBlazorApp.Components
+namespace BlazorComponents
 {
     public class TabControlBase : ComponentBase
     {
