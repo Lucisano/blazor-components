@@ -1,9 +1,10 @@
-﻿using BlazorComponents.Extensions;
+﻿using TestBlazorApp.Extensions;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Components.Web;
 
-namespace BlazorComponents
+namespace TestBlazorApp.Components
 {
     public class DateTimePickerBase : ComponentBase
     {
@@ -17,7 +18,7 @@ namespace BlazorComponents
 
         [Parameter]
         public Action<DateTime> DateChanged { get; set; }
-        
+
         public bool Expanded { get; set; }
 
         private string _title { get; set; }
@@ -117,6 +118,14 @@ namespace BlazorComponents
         {
             DateChanged?.Invoke(_dateValue);
             this.StateHasChanged();
+        }
+
+        protected void DateInput_OnKeyPress(KeyboardEventArgs args)
+        {
+            if (args.Key == "Enter")
+            {
+                Expanded = (CloseDateTileWindow) ? false : true;
+            }
         }
     }
 }

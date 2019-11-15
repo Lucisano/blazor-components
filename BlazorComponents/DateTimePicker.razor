@@ -33,12 +33,15 @@
     </style>
 </head>
 
-<p>@Title</p>
+
 
 <div style="width:300px;" id="dtp-main-body">
     <div class="container" id="dtp-picker-small">
+        <p class="container">@Title</p>
+    </div>
+    <div class="container" id="dtp-picker-small">
         <input class="square" id="leftButton" @onclick="@MoveBack" type="button" value="<" />
-        <input class="square" id="dtp-date-input" @onclick="@DateInputClick" @bind=@DateSelected type="text" />
+        <input class="square" id="dtp-date-input"  @onkeypress=@(e => DateInput_OnKeyPress(e))  @onclick="@DateInputClick" @bind=@DateString type="text" />
         <input class="square" id="rightButton" @onclick="@MoveForward" type="button" value=">" />
     </div>
     @if (Expanded)
@@ -60,11 +63,11 @@
                             var date = TileDates[rowOffset + c];
 
                             var colour = "#B0C4DE";
-                            if (date.Date == _dateSelected.Date)
+                            if (date.Date == _dateValue.Date)
                             {
                                 colour = "#4682B4";
                             }
-                            else if(date.Month != _dateSelected.Month)
+                            else if (date.Month != _dateValue.Month)
                             {
                                 colour = "#FFFFFF";
                             }
