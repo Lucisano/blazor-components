@@ -1,0 +1,14 @@
+﻿@inherits CollapsableCardBase
+
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a class=@HeaderClass data-toggle="collapse" @onclick=@ToggleExpand role="button" aria-expanded=@_expanded aria-controls="collapseCard">
+        <h6 class="m-0 font-weight-bold text-primary">@Header</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <div class=@ContentClass id="collapseCardExample" style="">
+        <CascadingValue Value="this">
+            @ChildContent
+        </CascadingValue>
+    </div>
+</div>

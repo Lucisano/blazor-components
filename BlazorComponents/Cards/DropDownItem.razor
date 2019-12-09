@@ -1,0 +1,9 @@
+﻿<a class="dropdown-item" style="cursor:pointer" @onclick=@ClickAction>@Text</a>
+
+@code {
+
+    [Parameter]
+    public string Text { get; set; }
+    [Parameter]
+    public Action ClickAction { get; set; }
+}
