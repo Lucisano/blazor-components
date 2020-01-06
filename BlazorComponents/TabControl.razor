@@ -2,13 +2,32 @@
 <div>
     <div>@Title</div>
     <div class="btn-group" role="group">
-        @foreach (TabPage tabPage in Pages)
+        @if (AsDropDown)
         {
-            <button type="button"
-                    class="btn @GetButtonClass(tabPage)"
-                    @onclick=@( () => ActivatePage(tabPage) )>
-                @tabPage.Text
-            </button>
+            <Dropdown SelectedText=@ActivePage?.Text>
+                @foreach (TabPage tabPage in Pages)
+                {
+                    <a class="dropdown-item" @onclick=@(() => ActivatePage(tabPage))>@tabPage.Text</a>
+                }
+            </Dropdown>
+            if (ExtraDropdowns != null)
+            {
+                foreach(var dd in ExtraDropdowns)
+                {
+                    @dd
+                }
+            }
+        }
+        else
+        {
+            @foreach (TabPage tabPage in Pages)
+            {
+                <button type="button"
+                        class="btn @GetButtonClass(tabPage)"
+                        @onclick=@(() => ActivatePage(tabPage))>
+                    @tabPage.Text
+                </button>
+            }
         }
     </div>
     <CascadingValue Value="this">
@@ -23,6 +42,9 @@
 
     [Parameter]
     public string Title { get; set; }
+
+    [Parameter]
+    public bool AsDropDown { get; set; }
 }
 
 

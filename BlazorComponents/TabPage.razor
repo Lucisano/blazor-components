@@ -1,7 +1,9 @@
 ﻿@inherits TabPageBase
 @if (Parent.ActivePage == this)
 {
-    @ChildContent
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
 }
 
 @code{
